@@ -8,9 +8,14 @@
  * @see <a href="https://cs125.cs.illinois.edu/lab/5/">Lab 5 Description</a>
  */
 public class Bank {
+    /**
+     *
+     */
+    private String bankName;
 
-    public String bankName;
-
+    /**
+     *
+     */
     public Bank() {
         bankName = "Illini Bank";
     }
@@ -29,6 +34,12 @@ public class Bank {
         /*
          * Implement this function
          */
+        double remain = bankAccount.getAccountBalance() - amount;
+        if (remain >= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -45,6 +56,13 @@ public class Bank {
         /*
          * Implement this function
          */
+        double remain = bankAccount.getAccountBalance() + amount;
+        if (remain >= 0) {
+            bankAccount.setAccountBalance(remain);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -64,6 +82,15 @@ public class Bank {
         /*
          * Implement this function
          */
+        double remain = source.getAccountBalance() - amount;
+        double remainOfDestination = destination.getAccountBalance() + amount;
+        if (remain >= 0) {
+            source.setAccountBalance(remain);
+            destination.setAccountBalance(remainOfDestination);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -77,9 +104,13 @@ public class Bank {
         /*
          * Implement this function
          */
+        bankAccount.setOwnerName(name);
     }
 
-    public static int totalAccounts = 0;
+    /**
+     *
+     */
+    private static int totalAccounts = 0;
     /**
      * Uses static variable to get number of bank accounts opened.
      *
@@ -89,7 +120,12 @@ public class Bank {
         /*
          * Implement this function
          */
+        totalAccounts = BankAccount.getAccountNumber();
+        return totalAccounts;
     }
+
+
+
 
     /**
      * Main method for testing.
